@@ -23,9 +23,9 @@ public class CloudinaryService {
             if (file.getSize() > 10 * 1024 * 1024) {
                 throw new IllegalArgumentException("El tamaño de la imagen excede el límite de 10 MB.");
             }
-            Map options = new HashMap<>();
+            Map<String,Object> options = new HashMap<>();
             options.put("folder", folderName);
-            Map uploadedFile = cloudinary.uploader().upload(file.getBytes(), options);
+            Map<String,Object> uploadedFile = cloudinary.uploader().upload(file.getBytes(), options);
             return (String) uploadedFile.get("url");
         } catch (IOException e) {
             e.printStackTrace();
