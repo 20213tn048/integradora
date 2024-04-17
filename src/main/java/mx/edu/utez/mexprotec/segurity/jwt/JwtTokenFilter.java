@@ -28,6 +28,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         this.provider = provider;
         this.service = service;
     }
+    public JwtTokenFilter() {
+        this.provider = new JwtProvider();
+        this.service = null;
+    }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, 
                                     FilterChain filterChain) throws ServletException, IOException {
