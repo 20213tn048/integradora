@@ -24,6 +24,7 @@ public class ProcessedService {
     private final AdoptionRepository adoptionRepository;
     private final Mailer mailer;
 
+    private String notFound = "No encontrado";
     @Autowired
     private ProcessedService(ProcessedRepository processedRepository, AdoptionRepository adoptionRepository, Mailer mailer) {
         this.processedRepository = processedRepository;
@@ -76,7 +77,7 @@ public class ProcessedService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
     }
@@ -125,7 +126,7 @@ public class ProcessedService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         return new CustomResponse<>(
                 this.processedRepository.saveAndFlush(processed),
@@ -142,7 +143,7 @@ public class ProcessedService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
         return new CustomResponse<>(
@@ -162,7 +163,7 @@ public class ProcessedService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
 

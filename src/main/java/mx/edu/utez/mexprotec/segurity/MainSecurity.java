@@ -28,11 +28,14 @@ import java.util.Arrays;
 @Configuration
 @EnableMethodSecurity
 public class MainSecurity {
-    @Autowired
-    AuthService authService;
+    final AuthService authService;
+    private final JwtEntryPoint entryPoint;
 
     @Autowired
-    private JwtEntryPoint entryPoint;
+    private MainSecurity(AuthService authService, JwtEntryPoint entryPoint) {
+        this.authService = authService;
+        this.entryPoint = entryPoint;
+    }
 
     @Bean
     public JwtTokenFilter authenticationJwtTokenFilter() {

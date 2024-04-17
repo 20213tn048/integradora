@@ -18,7 +18,7 @@ import org.hibernate.annotations.Type;
 public class Logs {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GenericGenerator(name = "uuid")
     private String id;
 
     @Column(columnDefinition = "json")

@@ -2,6 +2,8 @@ package mx.edu.utez.mexprotec.captchaservice.controller;
 
 import mx.edu.utez.mexprotec.captchaservice.dto.CaptchaResponse;
 import mx.edu.utez.mexprotec.captchaservice.service.CaptchaService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,7 +13,12 @@ import org.springframework.web.bind.annotation.*;
 )
 @RequestMapping("/api/captcha")
 public class CaptchaController {
-    private CaptchaService captchaService;
+    private final CaptchaService captchaService;
+
+    @Autowired
+    private CaptchaController(CaptchaService captchaService) {
+        this.captchaService = captchaService;
+    }
 
     @PostMapping("/verify-captcha")
     public CaptchaResponse verifyCaptcha(@RequestParam("solution") String solution) {

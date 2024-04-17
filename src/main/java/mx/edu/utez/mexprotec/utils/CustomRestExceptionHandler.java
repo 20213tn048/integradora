@@ -18,7 +18,6 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
             HttpHeaders headers,
-            HttpStatus status,
             WebRequest request){
         List<String> errors = new ArrayList<>();
         for(FieldError error: ex.getBindingResult().getFieldErrors()){

@@ -17,6 +17,7 @@ public class RaceService {
 
     private final RaceRepository raceRepository;
     
+    private String notFound = "No encontrado";
     @Autowired
     private RaceService(RaceRepository raceRepository) {
         this.raceRepository = raceRepository;
@@ -47,7 +48,7 @@ public class RaceService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
     }
@@ -79,7 +80,7 @@ public class RaceService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         return new CustomResponse<>(
                 this.raceRepository.saveAndFlush(race),
@@ -96,7 +97,7 @@ public class RaceService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
 

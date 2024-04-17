@@ -28,6 +28,7 @@ public class AdoptionService {
     private final AdoptionImageRepository adoptionImageRepository;
     private final AdoptionLimitService adoptionLimitService;
     
+    private String notFound = "No encotrado";
     @Autowired
     private AdoptionService(AdoptionRepository adoptionRepository, CloudinaryService cloudinaryService, AdoptionImageRepository adoptionImageRepository, AdoptionLimitService adoptionLimitService){
         this.adoptionRepository = adoptionRepository;
@@ -62,7 +63,7 @@ public class AdoptionService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
     }
@@ -159,8 +160,8 @@ public class AdoptionService {
                     false,
                     true,
                     400,
-                    "No encontrado"
-            );
+                    notFound
+        );
         }
     }
 
@@ -171,7 +172,7 @@ public class AdoptionService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
         this.adoptionRepository.deleteById(id);

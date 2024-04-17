@@ -12,7 +12,7 @@ import lombok.Setter;
 public class CustomResponse <T>{
     T data;
     Boolean error;
-    int StatusCode;
+    int statusCode;
     String message;
 
     public boolean isError() {

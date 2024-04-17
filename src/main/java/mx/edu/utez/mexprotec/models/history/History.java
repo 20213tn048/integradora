@@ -22,10 +22,7 @@ public class History {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GenericGenerator(name = "UUID")
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 

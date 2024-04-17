@@ -15,8 +15,11 @@ import java.util.Map;
 
 @Service
 public class CaptchaService {
+    private final RestTemplate restTemplate;
     @Autowired
-    private RestTemplate restTemplate;
+    private CaptchaService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
     @Value("${FRIENDLYCAPTCHA.CAPTCHAKEY}")
     private String captchaKey;
     @Value("${FRIENDLYCAPTCHA.SITEKEY}")

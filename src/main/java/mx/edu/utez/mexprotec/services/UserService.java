@@ -6,7 +6,6 @@ import mx.edu.utez.mexprotec.models.users.Users;
 import mx.edu.utez.mexprotec.models.users.UsersRepository;
 import mx.edu.utez.mexprotec.utils.CustomResponse;
 import mx.edu.utez.mexprotec.utils.Mailer;
-// import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,6 @@ public class UserService {
         this.mailer = mailer;
         this.encoder = encoder;
     }
-    // @Lazy
     
     @Transactional(readOnly = true)
     public CustomResponse<List<Users>> getAll() {

@@ -15,7 +15,7 @@ public class AuthUser implements UserDetails {
     private String password;
 
     private Users user;
-    public Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities;
 
     public AuthUser(String email, String password, Users user,
                     Collection<? extends GrantedAuthority> authorities) {

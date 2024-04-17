@@ -30,6 +30,6 @@ public interface UsersRepository extends JpaRepository<Users, UUID> {
     Users findByEmailAndActivo(@Param("email") String email);
 
     @Query(value = "SELECT * FROM users WHERE status=true AND id = :id AND id_rol = :id_rol", nativeQuery = true)
-    Users findByRolAndUserAndActivo(@Param("id") UUID id, @Param("id_rol") UUID id_rol);
+    Users findByRolAndUserAndActivo(@Param("id") UUID id, @Param("id_rol") UUID idRol);
 
 }

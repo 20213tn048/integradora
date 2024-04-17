@@ -18,12 +18,16 @@ import java.io.IOException;
 
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
-    private final static Logger LOGGER = LoggerFactory.getLogger(JwtTokenFilter.class);
-    @Autowired
-    JwtProvider provider;
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenFilter.class);
+    final JwtProvider provider;
+    final AuthService service;
+    
 
     @Autowired
-    AuthService service;
+    private JwtTokenFilter(JwtProvider provider, AuthService service) {
+        this.provider = provider;
+        this.service = service;
+    }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, 
                                     FilterChain filterChain) throws ServletException, IOException {
@@ -42,7 +46,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                         .setAuthentication(auth);
             }
         }catch (Exception e){
-            LOGGER.error("Error filterInternal -> " +e.getMessage());
+            LOGGER.error("Error filterInternal -> " ,e.getMessage());
         }
         filterChain.doFilter(request, response);
     }

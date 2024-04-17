@@ -58,10 +58,10 @@ public class AnimalDto {
 
         List<AnimalImage> animalImages = new ArrayList<>();
         if (getImageUrl() != null) {
-            for (String imageUrl : getImageUrl()) {
+            for (String imageUrlF : getImageUrl()) {
                 AnimalImage animalImage = new AnimalImage();
                 animalImage.setAnimal(animal);
-                animalImage.setImageUrl(imageUrl);
+                animalImage.setImageUrl(imageUrlF);
                 animalImages.add(animalImage);
             }
         }

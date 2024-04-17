@@ -22,12 +22,12 @@ import java.text.SimpleDateFormat;
 public class LogsFilter extends OncePerRequestFilter {
 
     private final LogsRepository repository;
-    private final com.fasterxml.jackson.databind.ObjectMapper ObjectMapper;
+    private final com.fasterxml.jackson.databind.ObjectMapper objectMapper;
 
     @Autowired
-    private LogsFilter(LogsRepository repository, com.fasterxml.jackson.databind.ObjectMapper ObjectMapper) {
+    private LogsFilter(LogsRepository repository, com.fasterxml.jackson.databind.ObjectMapper objectMapper) {
         this.repository = repository;
-        this.ObjectMapper = ObjectMapper;
+        this.objectMapper = objectMapper;
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class LogsFilter extends OncePerRequestFilter {
         filterChain.doFilter(multiReadRequest, multiReadResponse);
         String body = multiReadRequest.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
         String responseBody = new String(multiReadResponse.getContentAsByteArray(), response.getCharacterEncoding());
-        ObjectNode jsonNode = ObjectMapper.createObjectNode();
+        ObjectNode jsonNode = objectMapper.createObjectNode();
         Logs logs = new Logs();
         String token = request.getHeader("Authorization");
         if (token != null) {
@@ -49,16 +49,16 @@ public class LogsFilter extends OncePerRequestFilter {
         logs.setStatus(response.getStatus());
         jsonNode.put("token", token);
         try {
-            jsonNode.set("body", ObjectMapper.readTree(body));
+            jsonNode.set("body", objectMapper.readTree(body));
         } catch (JsonProcessingException e) {
             jsonNode.put("body", "Invalid JSON");
         }
         try {
-            jsonNode.set("response", ObjectMapper.readTree(responseBody));
+            jsonNode.set("response", objectMapper.readTree(responseBody));
         } catch (JsonProcessingException e) {
             jsonNode.put("response", "Invalid JSON");
         }
-        JsonNode node = ObjectMapper.valueToTree(jsonNode);
+        JsonNode node = objectMapper.valueToTree(jsonNode);
         logs.setData(node);
         logs.setCreatedAt(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Timestamp(System.currentTimeMillis())));
         multiReadResponse.copyBodyToResponse();

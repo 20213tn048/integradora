@@ -29,7 +29,7 @@ public class MultiReadHttpServletResponse extends HttpServletResponseWrapper {
 
             @Override
             public void setWriteListener(WriteListener writeListener) {
-
+                //this method is empty because is by default
             }
         };
         writer = new PrintWriter(new OutputStreamWriter(cachedContent, this.getCharacterEncoding()));

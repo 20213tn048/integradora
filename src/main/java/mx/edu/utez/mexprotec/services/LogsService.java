@@ -15,6 +15,8 @@ public class LogsService {
 
     private final LogsRepository repository;
 
+    private String ok = "Correcto";
+
     @Autowired
     private LogsService(LogsRepository repository){
         this.repository = repository;
@@ -22,15 +24,15 @@ public class LogsService {
     
     @Transactional(readOnly = true)
     public CustomResponse<Logs> getById(String id) throws SQLException {
-        return new CustomResponse<>(this.repository.findById(id).orElse(null), false, 200, "Correcto");
+        return new CustomResponse<>(this.repository.findById(id).orElse(null), false, 200, ok);
     }
     @Transactional(readOnly = true)
     public CustomResponse<List<Logs>> getAll() throws SQLException {
-        return new CustomResponse<>(this.repository.findAll(), false, 200, "Correcto");
+        return new CustomResponse<>(this.repository.findAll(), false, 200, ok);
     }
 
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Logs> save(Logs bitacora) throws SQLException {
-        return new CustomResponse<>(this.repository.save(bitacora), false, 200, "Correcto");
+        return new CustomResponse<>(this.repository.save(bitacora), false, 200, ok);
     }
 }

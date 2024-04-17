@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Component
 public class JwtProvider {
-    private  final static Logger LOGGER = LoggerFactory.getLogger(JwtProvider.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtProvider.class);
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
@@ -53,11 +53,9 @@ public class JwtProvider {
             LOGGER.error("Token caducado");
         } catch (IllegalArgumentException e) {
             LOGGER.error("Token no provisto");
-        } catch (SignatureException e) {
-            LOGGER.error("Error en la firma del token");
         } catch (Exception e) {
             LOGGER.error("Error en la firma del token");
-        }
+        } 
         return false;
     }
 

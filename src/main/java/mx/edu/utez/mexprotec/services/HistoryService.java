@@ -16,6 +16,7 @@ import java.util.UUID;
 public class HistoryService {
 
     private final HistoryRepository historyRepository;
+    private String notFound = "No encontrado";
     @Autowired
     private HistoryService(HistoryRepository historyRepository) {
         this.historyRepository = historyRepository;
@@ -66,7 +67,7 @@ public class HistoryService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
     }
@@ -88,7 +89,7 @@ public class HistoryService {
                     null,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         return new CustomResponse<>(
                 this.historyRepository.saveAndFlush(history),
@@ -105,7 +106,7 @@ public class HistoryService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
         return new CustomResponse<>(
@@ -125,7 +126,7 @@ public class HistoryService {
                     false,
                     true,
                     400,
-                    "No encontrado"
+                    notFound
             );
         }
         this.historyRepository.deleteById(id);
